@@ -1,7 +1,8 @@
 const { Router } = require('express');
+const cors = require('cors')
 const router = Router();
 
-
+router.use(cors())
 const Book = require('../models/Book');
 
 router.get('/', async (req,res) =>{

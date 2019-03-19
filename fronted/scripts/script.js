@@ -1,18 +1,10 @@
-
-
-
-var misCabeceras = new Headers();
-
-var miInit = { method: 'GET',
-               headers: misCabeceras,
-               mode: 'cors',
-               cache: 'default' };
-
-fetch('https://api-lindo-detalle.herokuapp.com/api/product',miInit)
-.then(function(response) {
-  return response.json();
-})
-.then(function(miJson) {
-  var objectURL = URL.createObjectURL(miBlob);
-  miImagen.src = objectURL;
-});
+fetch('https://api-lindo-detalle.herokuapp.com/api/product', {mode: 'no-cors'})
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(text) {
+    console.log('Request successful', text);
+  })
+  .catch(function(error) {
+    log('Request failed', error)
+  });

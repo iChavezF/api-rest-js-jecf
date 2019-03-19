@@ -2,11 +2,9 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();    
 }
 
-const cors = require('cors');
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
-const multer = require('multer');
-const path = require('path');
 
 
 //console.log(process.env.NODE_ENV)
