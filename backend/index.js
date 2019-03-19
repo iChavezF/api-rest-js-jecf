@@ -2,16 +2,17 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();    
 }
 
-
+const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 const multer = require('multer');
 const path = require('path');
-const cors = require('cors');
+
 
 //console.log(process.env.NODE_ENV)
 //INITIALIZATIONS
 const app = express();
+app.use(cors())
 require('./database');
 
 //SETTINGS
@@ -19,7 +20,7 @@ const port = process.env.PORT || 3000;
 
 
 //MIDDLEWARES
-app.use(cors());
+
 app.use(morgan('dev'));
 /*
 const storage = multer.diskStorage({
@@ -29,12 +30,6 @@ const storage = multer.diskStorage({
     }
 });
 app.use(multer({storage}).single('image'));*/
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-  
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());//leer json
 
