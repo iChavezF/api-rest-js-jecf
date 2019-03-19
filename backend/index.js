@@ -35,7 +35,7 @@ app.use(express.json());//leer json
 
 
 //ROUTES
-app.use('/api/books', require('./routes/books.js'));
+app.use('/api/books', require('./routes/books.js', cors()));
 
 
 //STATIC FILES
