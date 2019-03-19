@@ -29,13 +29,18 @@ const storage = multer.diskStorage({
     }
 });
 app.use(multer({storage}).single('image'));*/
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());//leer json
 
 
 //ROUTES
-app.use('/api/books', require('./routes/books.js', cors()));
+app.use('/api/books', require('./routes/books.js'));
 
 
 //STATIC FILES
