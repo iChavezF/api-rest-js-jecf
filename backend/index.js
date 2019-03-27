@@ -18,13 +18,13 @@ const port = process.env.PORT || 3000;
 
 
 //MIDDLEWARES
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
+const corsOptions = {
+    origin:'*',
+    methods:['POST','GET','PUT','DELETE','OPTIONS'],
+    allowedHeaders:['Origin','X-Requested-With','contentType','Content-Type','Accept','Authorization'],
+    credentials:true,
+    optionsSuccessStatus:200
+}
 
 
 app.use(morgan('dev'));
@@ -36,6 +36,7 @@ const storage = multer.diskStorage({
     }
 });
 app.use(multer({storage}).single('image'));*/
+app.use(cors(corsOptions));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());//leer json
 
